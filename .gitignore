@@ -12,7 +12,7 @@
 *.dmg
 
 # Addons (descomente se quiser ignorar)
-#addons/
+addons/
 
 # Logs
 logs/

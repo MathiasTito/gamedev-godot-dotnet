@@ -1,10 +1,11 @@
-[gd_scene load_steps=38 format=3 uid="uid://l1sndifrnqi4"]
+[gd_scene load_steps=37 format=3 uid="uid://l1sndifrnqi4"]
 
-[ext_resource type="Texture2D" uid="uid://beshp5k386m78" path="res://assets/background/test.JPG" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://bwtf636weqfd5" path="res://chars/character_body_2d.gd" id="2_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://bblxs2hy4fuge" path="res://scenes/640ae1d1-e1a7-4743-8d64-6175edb85804.png" id="2_tefeu"]
 [ext_resource type="Texture2D" uid="uid://iw7n2x20sucr" path="res://assets/main_char/default_sheet.png" id="3_tefeu"]
 [ext_resource type="Texture2D" uid="uid://cb6o2722frx6w" path="res://assets/main_char/walk_sheet.png" id="4_o6xl0"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sugp2"]
+load_path = "res://.godot/imported/640ae1d1-e1a7-4743-8d64-6175edb85804.png-3f01ca4ad56971b5adf51a8857986d9d.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eb6dy"]
 atlas = ExtResource("3_tefeu")
@@ -235,17 +236,11 @@ size = Vector2(96, 335)
 [node name="main" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
 offset_left = 2.0
-offset_top = -37.0
-offset_right = 1285.0
-offset_bottom = 683.0
-texture = ExtResource("1_jyhfs")
-
-[node name="640Ae1d1-e1a7-4743-8d64-6175Edb85804" type="Sprite2D" parent="."]
-position = Vector2(1172, 109)
-scale = Vector2(1.59668, 1.59668)
-texture = ExtResource("2_tefeu")
+offset_top = -439.0
+offset_right = 2141.0
+offset_bottom = 987.0
+texture = SubResource("CompressedTexture2D_sugp2")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(356, 656)
