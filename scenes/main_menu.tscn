@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvxuxxjurwj02"]
+
+[ext_resource type="Script" uid="uid://dqe6y6hm01hu" path="res://buttons/play_menu_button.gd" id="1_l6cm7"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 783.0
+offset_top = 245.0
+offset_right = 1160.0
+offset_bottom = 355.0
+theme_override_font_sizes/font_size = 80
+text = "V de Vilão"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 774.0
+offset_top = 544.0
+offset_right = 1307.0
+offset_bottom = 696.0
+theme_override_font_sizes/font_size = 80
+text = "Play"
+script = ExtResource("1_l6cm7")
