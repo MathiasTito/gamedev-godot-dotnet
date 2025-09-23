@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb6o2722frx6w"
-path="res://.godot/imported/walk_sheet.png-a5bcaeb8b26346152c29bbbec9e96ad1.ctex"
+uid="uid://cniw5w3isprlc"
+path="res://.godot/imported/GuardaParado.png-772ef51c7f92e2f85dd52c3a32cbc07e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_char/walk_sheet.png"
-dest_files=["res://.godot/imported/walk_sheet.png-a5bcaeb8b26346152c29bbbec9e96ad1.ctex"]
+source_file="res://assets/policial/GuardaParado.png"
+dest_files=["res://.godot/imported/GuardaParado.png-772ef51c7f92e2f85dd52c3a32cbc07e.ctex"]
 
 [params]
 

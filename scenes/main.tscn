@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://cb6o2722frx6w" path="res://assets/main_char/walk_sheet.png" id="4_o6xl0"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sugp2"]
-load_path = "res://.godot/imported/640ae1d1-e1a7-4743-8d64-6175edb85804.png-3f01ca4ad56971b5adf51a8857986d9d.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eb6dy"]
 atlas = ExtResource("3_tefeu")
@@ -249,7 +248,6 @@ script = ExtResource("2_tbgi4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 scale = Vector2(1.49219, 1.49219)
 sprite_frames = SubResource("SpriteFrames_4k2k6")
-animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-12, -6)

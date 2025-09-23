@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://ce8s40xfu5eh7"]
+[gd_scene load_steps=17 format=3 uid="uid://ce8s40xfu5eh7"]
 
-[ext_resource type="Texture2D" uid="uid://bblxs2hy4fuge" path="res://assets/background/640ae1d1-e1a7-4743-8d64-6175edb85804.png" id="1_e1hjg"]
-[ext_resource type="Script" uid="uid://bwtf636weqfd5" path="res://chars/character_body_2d.gd" id="2_b1ot8"]
-[ext_resource type="Texture2D" uid="uid://iw7n2x20sucr" path="res://assets/main_char/default_sheet.png" id="3_ft4dl"]
+[ext_resource type="Texture2D" uid="uid://b57rd0chgvlh" path="res://assets/background/prison.png" id="1_1661b"]
+[ext_resource type="Texture2D" uid="uid://cniw5w3isprlc" path="res://assets/policial/GuardaParado.png" id="3_b1ot8"]
+[ext_resource type="Script" uid="uid://c6ifjtqrn570j" path="res://scenes/character_portraits.gd" id="3_ft4dl"]
+[ext_resource type="Texture2D" uid="uid://blrxrjor8lw1e" path="res://assets/main_char/ParadoCadeia.png" id="4_ft4dl"]
 
 [sub_resource type="GDScript" id="GDScript_b1ot8"]
 script/source = "extends Control
@@ -12,6 +13,8 @@ script/source = "extends Control
 @onready var dialogue_text = $DialogueBox/TextLabel
 @onready var continue_button = $DialogueBox/ContinueButton
 @onready var gray_filter = $GrayFilter
+@onready var left_portrait = $CharacterPortraits/LeftPortraits
+@onready var right_portrait = $CharacterPortraits/RightPortraits
 
 var dialogue_data = []
 var current_dialogue_index = 0
@@ -24,6 +27,8 @@ signal dialogue_finished
 func _ready():
 	dialogue_box.visible = false
 	gray_filter.visible = true
+	left_portrait.play()
+	right_portrait.play()
 	continue_button.pressed.connect(_on_continue_pressed)
 	
 	await get_tree().create_timer(0.5).timeout
@@ -127,174 +132,79 @@ func deactivate_filter():
 	visible = false
 "
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eb6dy"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(0, 0, 256, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr6cb"]
+atlas = ExtResource("3_b1ot8")
+region = Rect2(0, 0, 80, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(256, 0, 256, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_03d2k"]
+atlas = ExtResource("3_b1ot8")
+region = Rect2(80, 0, 80, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8y0u"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(512, 0, 256, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1je7"]
+atlas = ExtResource("3_b1ot8")
+region = Rect2(160, 0, 80, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jkv2x"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(768, 0, 256, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh0bm"]
+atlas = ExtResource("3_b1ot8")
+region = Rect2(240, 0, 80, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jbj1t"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(1024, 0, 256, 256)
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntjli"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xr6cb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03d2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1je7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh0bm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_muem4"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(1280, 0, 256, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_81pkf"]
+atlas = ExtResource("4_ft4dl")
+region = Rect2(0, 0, 76, 228)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dp3eg"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(1536, 0, 256, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_efhey"]
+atlas = ExtResource("4_ft4dl")
+region = Rect2(76, 0, 76, 228)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ld40"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(1792, 0, 256, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv8oa"]
+atlas = ExtResource("4_ft4dl")
+region = Rect2(152, 0, 76, 228)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gqmmt"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(2048, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yc10j"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(2304, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jscy8"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(2560, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pm3ni"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(2816, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y6deb"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(3072, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_og1vs"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(3328, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2wyq8"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(3584, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vxglm"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(3840, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2f3dj"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(4096, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yq6so"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(4352, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fv21b"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(4608, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tel4y"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(4864, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qkpxi"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(5120, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5q0nq"]
-atlas = ExtResource("3_ft4dl")
-region = Rect2(5376, 0, 256, 256)
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3grg"]
+atlas = ExtResource("4_ft4dl")
+region = Rect2(228, 0, 76, 228)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xr6cb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eb6dy")
+"texture": SubResource("AtlasTexture_81pkf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_trceg")
+"texture": SubResource("AtlasTexture_efhey")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a8y0u")
+"texture": SubResource("AtlasTexture_qv8oa")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jkv2x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jbj1t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_muem4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dp3eg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0ld40")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gqmmt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yc10j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jscy8")
-}, {
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_pm3ni")
-}, {
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_y6deb")
-}, {
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_og1vs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2wyq8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vxglm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2f3dj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yq6so")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fv21b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tel4y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qkpxi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5q0nq")
+"texture": SubResource("AtlasTexture_k3grg")
 }],
 "loop": true,
 "name": &"default",
-"speed": 8.5
+"speed": 5.0
 }]
 
 [node name="PrisonCutscene" type="Node2D"]
-
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1920.0
-offset_bottom = 1080.0
-texture = ExtResource("1_e1hjg")
 
 [node name="DialogueManager" type="Control" parent="."]
 layout_mode = 3
@@ -302,6 +212,12 @@ anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 script = SubResource("GDScript_b1ot8")
+
+[node name="TextureRect" type="TextureRect" parent="DialogueManager"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_1661b")
 
 [node name="GrayFilter" type="ColorRect" parent="DialogueManager"]
 visible = false
@@ -338,20 +254,20 @@ offset_top = 79.0
 offset_right = 810.0
 offset_bottom = 111.0
 
-[node name="PolicialChar" type="CharacterBody2D" parent="."]
-position = Vector2(1566, 975)
-script = ExtResource("2_b1ot8")
+[node name="CharacterPortraits" type="HBoxContainer" parent="DialogueManager"]
+layout_mode = 0
+offset_top = 264.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("3_ft4dl")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PolicialChar"]
-scale = Vector2(4.2578135, 4.2578135)
-sprite_frames = SubResource("SpriteFrames_xr6cb")
+[node name="RightPortraits" type="AnimatedSprite2D" parent="DialogueManager/CharacterPortraits"]
+position = Vector2(1582, 692)
+scale = Vector2(4.25781, 4.25781)
+sprite_frames = SubResource("SpriteFrames_ntjli")
 flip_h = true
 
-[node name="MainChar" type="CharacterBody2D" parent="."]
-position = Vector2(338, 964)
-script = ExtResource("2_b1ot8")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MainChar"]
-position = Vector2(-1.5258789e-05, 1.5258789e-05)
-scale = Vector2(4.2578135, 4.2578135)
+[node name="LeftPortraits" type="AnimatedSprite2D" parent="DialogueManager/CharacterPortraits"]
+position = Vector2(334, 710)
+scale = Vector2(4.25781, 4.25781)
 sprite_frames = SubResource("SpriteFrames_xr6cb")
