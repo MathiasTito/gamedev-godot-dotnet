@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buag02hdmu6hd"
-path="res://.godot/imported/ParadoCadeia.png-ef54c91a6ba12e1cd1e497ec557b0f71.ctex"
+uid="uid://cwym7mgm2kwp3"
+path="res://.godot/imported/police-station-1.jpg-c8099d543c9257b0f41183130440c9d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_char/ParadoCadeia.png"
-dest_files=["res://.godot/imported/ParadoCadeia.png-ef54c91a6ba12e1cd1e497ec557b0f71.ctex"]
+source_file="res://assets/background/police-station-1.jpg"
+dest_files=["res://.godot/imported/police-station-1.jpg-c8099d543c9257b0f41183130440c9d5.ctex"]
 
 [params]
 

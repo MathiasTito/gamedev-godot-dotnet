@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buag02hdmu6hd"
-path="res://.godot/imported/ParadoCadeia.png-ef54c91a6ba12e1cd1e497ec557b0f71.ctex"
+uid="uid://c8nuqclki6od1"
+path="res://.godot/imported/tile.jpg-e646ef2c756773100dda1ec1aaac6334.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_char/ParadoCadeia.png"
-dest_files=["res://.godot/imported/ParadoCadeia.png-ef54c91a6ba12e1cd1e497ec557b0f71.ctex"]
+source_file="res://assets/background/tile.jpg"
+dest_files=["res://.godot/imported/tile.jpg-e646ef2c756773100dda1ec1aaac6334.ctex"]
 
 [params]
 

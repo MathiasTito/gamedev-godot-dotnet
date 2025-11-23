@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b57rd0chgvlh" path="res://assets/background/prison.png" id="1_1661b"]
 [ext_resource type="Texture2D" uid="uid://cniw5w3isprlc" path="res://assets/policial/GuardaParado.png" id="3_b1ot8"]
 [ext_resource type="Script" uid="uid://c6ifjtqrn570j" path="res://scenes/character_portraits.gd" id="3_ft4dl"]
-[ext_resource type="Texture2D" uid="uid://blrxrjor8lw1e" path="res://assets/main_char/ParadoCadeia.png" id="4_ft4dl"]
+[ext_resource type="Texture2D" uid="uid://buag02hdmu6hd" path="res://assets/main_char/ParadoCadeia.png" id="4_ft4dl"]
 
 [sub_resource type="GDScript" id="GDScript_b1ot8"]
 script/source = "extends Control
@@ -19,7 +19,7 @@ script/source = "extends Control
 var dialogue_data = []
 var current_dialogue_index = 0
 var is_dialogue_active = false
-var text_speed = 0.05
+var text_speed = 0.03
 var is_typing = false
 
 signal dialogue_finished
@@ -38,12 +38,28 @@ func start_auto_dialogue():
 	\"\"\"Inicia um diálogo automático quando a cena carrega\"\"\"
 	var auto_dialogue = [
 		{
-			\"character\": \"Narrador\",
-			\"text\": \"Bem-vindo ao jogo!\"
+			\"character\": \"Guarda\",
+			\"text\": \"Bem vindo a sua nova casa!\"
 		},
 		{
-			\"character\": \"Personagem\",
-			\"text\": \"Sua aventura está prestes a começar...\"
+			\"character\": \"Guarda\",
+			\"text\": \"Mas não por muito tempo, a gente sabe o que você fez.\"
+		},
+		{
+			\"character\": \"Guarda\",
+			\"text\": \"E gente que nem você não dura muito tempo por aqui.\"
+		},
+		{
+			\"character\": \"V\",
+			\"text\": \"Eu não me importo com essa sua falação.\"
+		},
+		{
+			\"character\": \"V\",
+			\"text\": \"Se eu tivesse outra oportunidade, faria tudo igual.\"
+		},
+		{
+			\"character\": \"Guarda\",
+			\"text\": \"Vamos ver quanto tempo dura essa sua marra.\"
 		}
 	]
 	
@@ -168,19 +184,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_81pkf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1ot8"]
 atlas = ExtResource("4_ft4dl")
 region = Rect2(0, 0, 76, 228)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_efhey"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft4dl"]
 atlas = ExtResource("4_ft4dl")
 region = Rect2(76, 0, 76, 228)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qv8oa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntjli"]
 atlas = ExtResource("4_ft4dl")
 region = Rect2(152, 0, 76, 228)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k3grg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_81pkf"]
 atlas = ExtResource("4_ft4dl")
 region = Rect2(228, 0, 76, 228)
 
@@ -188,16 +204,16 @@ region = Rect2(228, 0, 76, 228)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_b1ot8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ft4dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntjli")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_81pkf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_efhey")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qv8oa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k3grg")
 }],
 "loop": true,
 "name": &"default",

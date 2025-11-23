@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbqjquk7hdb50"]
+
+[ext_resource type="Script" uid="uid://bwtf636weqfd5" path="res://chars/character_body_2d.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://jqisx31drrx6" path="res://assets/main_char/vista de cima.png" id="2_qhqgy"]
+
+[sub_resource type="Gradient" id="Gradient_tbgi4"]
+offsets = PackedFloat32Array(0, 0.28125, 0.7916667)
+colors = PackedColorArray(0.8427173, 0.91947275, 0.9041039, 1, 0.6743092, 0.7342382, 0.72223854, 0.7807779, 0.07450981, 0.07450981, 0.07450981, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dqkch"]
+gradient = SubResource("Gradient_tbgi4")
+fill = 1
+fill_from = Vector2(0.51875, 0.5)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(327, 264)
+script = ExtResource("1_g2els")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(4.7683716e-05, -3.9999685)
+scale = Vector2(0.50423837, 0.5944453)
+texture = ExtResource("2_qhqgy")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(-0.32788086, -0.22216797)
+zoom = Vector2(1.35, 1.35)
+process_callback = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
+polygon = PackedVector2Array(24, -2, 24, 16, -24, 16, -24, -1, -11, -15, -9, -24, -1, -24, -1, -7, 11, -7, 11, -2)
+
+[node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D"]
+position = Vector2(3.6239624e-05, 2.0980835e-05)
+scale = Vector2(0.8496098, 0.8496098)
+energy = 1.63
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_dqkch")
+texture_scale = 2.0
