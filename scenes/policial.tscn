@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy3qp3ybche6r"]
+
+[ext_resource type="Texture2D" uid="uid://cwym7mgm2kwp3" path="res://assets/background/police-station-1.jpg" id="1_tvnp5"]
+[ext_resource type="Shader" uid="uid://ct1mo0dtdsr1h" path="res://scenes/player.gdshader" id="3_rdodq"]
+[ext_resource type="Texture2D" uid="uid://btqa824pworsw" path="res://assets/others/lantern_light.png" id="4_hrxlf"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ujk2v"]
+load_path = "res://.godot/imported/vista de cima.png-34ff567b2b02b9f75489937c178cafdc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ojlkg"]
+shader = ExtResource("3_rdodq")
+shader_parameter/angle_width = 21.0000009975
+shader_parameter/smoothness = 0.1
+shader_parameter/fade_start = 0.3
+shader_parameter/fade_end = 1.0
+
+[node name="Policial" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 1918.4683
+offset_bottom = 1096.0
+texture = ExtResource("1_tvnp5")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(257, 702)
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(4.7683716e-05, -3.9999685)
+scale = Vector2(0.50423837, 0.5944453)
+texture = SubResource("CompressedTexture2D_ujk2v")
+
+[node name="LanternHand" type="Node2D" parent="CharacterBody2D/Sprite2D"]
+position = Vector2(-9.916066, -30.28038)
+
+[node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D/Sprite2D/LanternHand"]
+material = SubResource("ShaderMaterial_ojlkg")
+position = Vector2(-3.1668428e-08, 0.3622446)
+rotation = 3.1415927
+scale = Vector2(1, 0.8792518)
+energy = 0.15
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("4_hrxlf")
+offset = Vector2(3.5, 303.5)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
+polygon = PackedVector2Array(-65, -322, 55, -322, -5, -22)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.101960786, 0.101960786, 0.101960786, 1)

@@ -1,7 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbqjquk7hdb50"]
+[gd_scene load_steps=9 format=3 uid="uid://bbqjquk7hdb50"]
 
 [ext_resource type="Script" uid="uid://bwtf636weqfd5" path="res://chars/character_body_2d.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://cwym7mgm2kwp3" path="res://assets/background/police-station-1.jpg" id="1_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://jqisx31drrx6" path="res://assets/main_char/vista de cima.png" id="2_qhqgy"]
+[ext_resource type="Shader" uid="uid://ct1mo0dtdsr1h" path="res://scenes/player.gdshader" id="4_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://btqa824pworsw" path="res://assets/others/lantern_light.png" id="5_qlg0r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dqkch"]
+shader = ExtResource("4_qlg0r")
+shader_parameter/angle_width = 21.0000009975
+shader_parameter/smoothness = 0.1
+shader_parameter/fade_start = 0.3
+shader_parameter/fade_end = 1.0
 
 [sub_resource type="Gradient" id="Gradient_tbgi4"]
 offsets = PackedFloat32Array(0, 0.28125, 0.7916667)
@@ -14,8 +24,14 @@ fill_from = Vector2(0.51875, 0.5)
 
 [node name="Node2D" type="Node2D"]
 
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 1918.4683
+offset_bottom = 1096.0
+texture = ExtResource("1_qhqgy")
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(327, 264)
+position = Vector2(279, 322)
 script = ExtResource("1_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
@@ -23,8 +39,18 @@ position = Vector2(4.7683716e-05, -3.9999685)
 scale = Vector2(0.50423837, 0.5944453)
 texture = ExtResource("2_qhqgy")
 
+[node name="LanternHand" type="Node2D" parent="CharacterBody2D/Sprite2D"]
+position = Vector2(-9.916066, -30.28038)
+
+[node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D/Sprite2D/LanternHand"]
+material = SubResource("ShaderMaterial_dqkch")
+rotation = 3.1415927
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("5_qlg0r")
+offset = Vector2(3.5, 303.5)
+
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-position = Vector2(-0.32788086, -0.22216797)
 zoom = Vector2(1.35, 1.35)
 process_callback = 0
 limit_smoothed = true
@@ -35,9 +61,12 @@ position_smoothing_speed = 8.0
 polygon = PackedVector2Array(24, -2, 24, 16, -24, 16, -24, -1, -11, -15, -9, -24, -1, -24, -1, -7, 11, -7, 11, -2)
 
 [node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D"]
-position = Vector2(3.6239624e-05, 2.0980835e-05)
+position = Vector2(0, 5)
 scale = Vector2(0.8496098, 0.8496098)
-energy = 1.63
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_dqkch")
 texture_scale = 2.0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.101960786, 0.101960786, 0.101960786, 1)

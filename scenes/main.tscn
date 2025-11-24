@@ -1,10 +1,10 @@
-[gd_scene load_steps=48 format=3 uid="uid://l1sndifrnqi4"]
+[gd_scene load_steps=45 format=3 uid="uid://l1sndifrnqi4"]
 
 [ext_resource type="Texture2D" uid="uid://cwym7mgm2kwp3" path="res://assets/background/police-station-1.jpg" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bbqjquk7hdb50" path="res://scenes/player.tscn" id="2_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://bwh06o22cwleq" path="res://assets/background/lamp.png" id="4_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://up5ksly48vjo" path="res://assets/background/def.png" id="4_tefeu"]
-[ext_resource type="Script" uid="uid://bi7n7o802rnnf" path="res://scenes/final_gate.gd" id="6_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://dy3qp3ybche6r" path="res://scenes/policial.tscn" id="6_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://cliwelklqmdg8" path="res://assets/background/abc (1).png" id="6_tefeu"]
 
 [sub_resource type="Gradient" id="Gradient_tefeu"]
@@ -113,23 +113,14 @@ size = Vector2(132, 41)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_og1vs"]
 size = Vector2(63, 105)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tbgi4"]
-polygon = PackedVector2Array(-20, -19, 179, -19, 179, 54, -20, 54)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gqmmt"]
-polygon = PackedVector2Array(126, -19, 281, -19, 281, 48, 126, 48)
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tefeu"]
-polygon = PackedVector2Array(136, -44, 344, -45, 342, 48, 136, 48)
+polygon = PackedVector2Array(-228, -17, 865, -18, 865, 6, -228, 5)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_o6xl0"]
-polygon = PackedVector2Array(-52, -11, 154.35706, -12.481018, 366, -14, 366, 73, -52, 73)
+polygon = PackedVector2Array(-236, -18, 1692, -18, 1688, 736, 1614, 736, 1613, 411, 1296, 410, 1296, 597, 1274, 597, 1274, 411, 1200, 411, 1204, 389, 1613, 389, 1612, 44, 1039, 47, 1038, 389, 1016, 389, 1017, 47, 724, 47, 721.97705, 388.80902, 1136, 389, 1132, 410, 1075, 411, 699, 411, 701, 47, -151, 47, -152, 738, -71, 737, -67, 758, -152, 758, -155, 965, -93, 1023, 445, 1024, 443, 759, 463, 759, 464, 1024, 635, 1024, 634, 759, 658, 759, 659, 1024, 1686, 1022, 1684, 1080, -236, 1080, -236, 766, -237, 96)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
-size = Vector2(21, 141)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fuf3a"]
-size = Vector2(122, 140)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tbgi4"]
+polygon = PackedVector2Array(-251, -17, 229, -16, 229, 5, -250, 5)
 
 [node name="main" type="Node2D"]
 
@@ -323,34 +314,17 @@ shape = SubResource("RectangleShape2D_y6deb")
 position = Vector2(1795.5, 292.5)
 shape = SubResource("RectangleShape2D_og1vs")
 
-[node name="LightOccluder2D3" type="LightOccluder2D" parent="StaticBody2D"]
-position = Vector2(967, 715)
-occluder = SubResource("OccluderPolygon2D_tbgi4")
-
 [node name="LightOccluder2D4" type="LightOccluder2D" parent="StaticBody2D"]
-position = Vector2(822, 466)
-occluder = SubResource("OccluderPolygon2D_gqmmt")
-
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="StaticBody2D"]
-position = Vector2(967, 486)
+position = Vector2(1055, 785)
 occluder = SubResource("OccluderPolygon2D_tefeu")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D"]
-position = Vector2(359, 420)
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="StaticBody2D"]
+position = Vector2(235, 31)
 occluder = SubResource("OccluderPolygon2D_o6xl0")
 
-[node name="FinalGate" type="StaticBody2D" parent="." node_paths=PackedStringArray("barreira", "interaction_area")]
-position = Vector2(1520, 699)
-script = ExtResource("6_o6xl0")
-barreira = NodePath("FinalGate")
-interaction_area = NodePath("Area2D")
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="StaticBody2D"]
+position = Vector2(493, 785)
+occluder = SubResource("OccluderPolygon2D_tbgi4")
 
-[node name="FinalGate" type="CollisionShape2D" parent="FinalGate"]
-shape = SubResource("RectangleShape2D_tbgi4")
-
-[node name="Area2D" type="Area2D" parent="FinalGate"]
-position = Vector2(0, 0.5)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FinalGate/Area2D"]
-position = Vector2(1, -1.5)
-shape = SubResource("RectangleShape2D_fuf3a")
+[node name="Policial" parent="." instance=ExtResource("6_o6xl0")]
+position = Vector2(103, 0)
