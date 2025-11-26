@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://5700rmjlxg5t"]
+
+[ext_resource type="Script" uid="uid://baofbsle83kdd" path="res://scenes/credits.gd" id="1_2ckv8"]
+[ext_resource type="FontFile" uid="uid://b0w6ptohxm2ao" path="res://assets/fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="2_0ctdu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ckv8"]
+font = ExtResource("2_0ctdu")
+font_size = 220
+
+[sub_resource type="LabelSettings" id="LabelSettings_2fbfq"]
+font = ExtResource("2_0ctdu")
+font_size = 60
+
+[node name="Credits" type="Node2D"]
+script = ExtResource("1_2ckv8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1925.9601
+offset_bottom = 1082.0
+color = Color(0, 0, 0, 1)
+
+[node name="V" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 607.0
+offset_top = 417.0
+offset_right = 1316.0
+offset_bottom = 806.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "V de Vilão
+"
+label_settings = SubResource("LabelSettings_2ckv8")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = 154.0
+offset_top = 929.0
+offset_right = 1767.0
+offset_bottom = 5477.0
+text = "
+
+
+
+Desenvolvido por
+
+Bernardo de Sousa Garcia
+Leonardo Wojcik
+Matheus Pereira Tito dos Santos
+Samuel Varela Santos
+
+Desenvolvido para
+
+Matéria de Desenvolvimento
+de Jogos
+
+Em parceiria com
+UniSenai
+
+Professor Orientador:
+Thiago Schaedler Uhlmann
+
+
+Obrigado por jogar!
+
+
+
+
+
+
+
+
+
+
+
+
+"
+label_settings = SubResource("LabelSettings_2fbfq")
+horizontal_alignment = 1

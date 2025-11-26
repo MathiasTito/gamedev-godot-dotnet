@@ -1,16 +1,37 @@
 extends CharacterBody2D
 
-@export var speed: float = 150.0
+# Variáveis
+var has_flashlight: bool = false
+var has_key: bool = false
+var can_move: bool = false
 
-@onready var flashlight = $Sprite2D/LanternHand/PointLight2D_lantern 
+@export var speed: float = 200.0
+
+# Referências
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var flashlight: PointLight2D = $Sprite2D/LanternHand/PointLight2D
+
+func _ready():
+	flashlight.enabled = false
+	
+	await get_tree().create_timer(2.0).timeout
+	can_move = true
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"): 
-		flashlight.enabled = !flashlight.enabled
+	if event.is_action_pressed("ui_accept") and has_flashlight:
+		flashlight.enabled = not flashlight.enabled
 
-func _physics_process(delta: float) -> void:
-	# --- Movimento ---
+func activate_flashlight_capability():
+	has_flashlight = true
+	flashlight.enabled = true
+	
+func activate_doors():
+	has_key = true
+
+func _physics_process(_delta: float) -> void:
+	if not can_move:
+		velocity = Vector2.ZERO
+		return
 	
 	var move_direction: Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
@@ -21,15 +42,11 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	# --- Rotação Geral ---
 	rotation_logic()
 
 func rotation_logic():
 	var mouse_position: Vector2 = get_global_mouse_position()
 	
-	# Giramos APENAS o Sprite. 
-	# Como a Lanterna é filha dele, ela gira junto automaticamente.
 	sprite_2d.look_at(mouse_position)
 	
-	# Correção porque seu desenho (e provavelmente a luz) apontam para CIMA
-	sprite_2d.rotation += deg_to_rad(90)
+	sprite_2d.rotate(deg_to_rad(90))

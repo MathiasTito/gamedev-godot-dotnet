@@ -1,0 +1,211 @@
+[gd_scene load_steps=24 format=3 uid="uid://mvn28vlgxiqh"]
+
+[ext_resource type="Texture2D" uid="uid://bbu0rhfequa37" path="res://assets/dialogue_backgrounds/cena_final.png" id="1_4bkdv"]
+[ext_resource type="Script" uid="uid://77wjlhuq4dlh" path="res://scenes/dialogue_manager.gd" id="1_egufw"]
+[ext_resource type="Texture2D" uid="uid://cniw5w3isprlc" path="res://assets/policial/GuardaParado.png" id="3_r78si"]
+[ext_resource type="Texture2D" uid="uid://cwt6a1lxjda7o" path="res://assets/main_char/Atirando-Sheet.png" id="4_ytd0m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr6cb"]
+atlas = ExtResource("3_r78si")
+region = Rect2(0, 0, 80, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03d2k"]
+atlas = ExtResource("3_r78si")
+region = Rect2(80, 0, 80, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1je7"]
+atlas = ExtResource("3_r78si")
+region = Rect2(160, 0, 80, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh0bm"]
+atlas = ExtResource("3_r78si")
+region = Rect2(240, 0, 80, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iwokc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xr6cb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03d2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1je7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh0bm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_by4lc"]
+atlas = ExtResource("4_ytd0m")
+region = Rect2(0, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2ws3"]
+atlas = ExtResource("4_ytd0m")
+region = Rect2(400, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d32fx"]
+atlas = ExtResource("4_ytd0m")
+region = Rect2(800, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2vgp"]
+atlas = ExtResource("4_ytd0m")
+region = Rect2(1200, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfo4f"]
+atlas = ExtResource("4_ytd0m")
+region = Rect2(1600, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x81kn"]
+atlas = ExtResource("4_ytd0m")
+region = Rect2(2000, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dddxd"]
+atlas = ExtResource("4_ytd0m")
+region = Rect2(2400, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7irhw"]
+atlas = ExtResource("4_ytd0m")
+region = Rect2(2800, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukccf"]
+atlas = ExtResource("4_ytd0m")
+region = Rect2(3200, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tav3"]
+atlas = ExtResource("4_ytd0m")
+region = Rect2(3600, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7daf"]
+atlas = ExtResource("4_ytd0m")
+region = Rect2(4000, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhu2n"]
+atlas = ExtResource("4_ytd0m")
+region = Rect2(4400, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7052"]
+atlas = ExtResource("4_ytd0m")
+region = Rect2(4800, 0, 400, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i3bdr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by4lc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2ws3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d32fx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2vgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfo4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x81kn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dddxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7irhw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukccf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tav3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7daf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhu2n")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_e7052")
+}],
+"loop": true,
+"name": &"atirando",
+"speed": 5.0
+}]
+
+[node name="FinalScene" type="Node2D"]
+
+[node name="DialogueManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_egufw")
+
+[node name="TextureRect" type="TextureRect" parent="DialogueManager"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_4bkdv")
+
+[node name="GrayFilter" type="ColorRect" parent="DialogueManager"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.3764706, 0.3764706, 0.3764706, 0.30588236)
+
+[node name="DialogueBox" type="Panel" parent="DialogueManager"]
+layout_mode = 0
+offset_left = 569.0
+offset_top = 908.0
+offset_right = 1379.0
+offset_bottom = 1019.0
+
+[node name="NameLabel" type="Label" parent="DialogueManager/DialogueBox"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 134.0
+offset_bottom = 43.0
+
+[node name="TextLabel" type="Label" parent="DialogueManager/DialogueBox"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 47.0
+offset_right = 776.0
+offset_bottom = 88.0
+
+[node name="ContinueButton" type="Button" parent="DialogueManager/DialogueBox"]
+layout_mode = 0
+offset_left = 679.0
+offset_top = 79.0
+offset_right = 810.0
+offset_bottom = 111.0
+
+[node name="CharacterPortraits" type="HBoxContainer" parent="DialogueManager"]
+layout_mode = 0
+offset_top = 137.0
+offset_right = 1918.0
+offset_bottom = 1075.0
+
+[node name="RightPortraits" type="AnimatedSprite2D" parent="DialogueManager/CharacterPortraits"]
+position = Vector2(1637, 800)
+scale = Vector2(4.25781, 4.25781)
+sprite_frames = SubResource("SpriteFrames_iwokc")
+frame_progress = 0.50051636
+flip_h = true
+
+[node name="LeftPortraits" type="AnimatedSprite2D" parent="DialogueManager/CharacterPortraits"]
+position = Vector2(347.00003, 850.00006)
+scale = Vector2(2.665938, 2.665938)
+sprite_frames = SubResource("SpriteFrames_i3bdr")
+animation = &"atirando"
+frame = 1
+frame_progress = 0.5974249

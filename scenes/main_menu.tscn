@@ -1,6 +1,89 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvxuxxjurwj02"]
+[gd_scene load_steps=14 format=3 uid="uid://bvxuxxjurwj02"]
 
-[ext_resource type="Script" uid="uid://dqe6y6hm01hu" path="res://buttons/play_menu_button.gd" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://bu164voyhbb88" path="res://scenes/main_menu.gd" id="1_rtw2f"]
+[ext_resource type="FontFile" uid="uid://b0w6ptohxm2ao" path="res://assets/fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="2_ekxnf"]
+[ext_resource type="AudioStream" uid="uid://b8kpdjrsbma5x" path="res://assets/sounds/som_de_chuva1.mp3" id="3_bqqt6"]
+[ext_resource type="VideoStream" uid="uid://dafoxxifgjxme" path="res://assets/UI/2025-11-24-23-35-30.ogv" id="4_8ln24"]
+[ext_resource type="AudioStream" uid="uid://booha8ljhkh87" path="res://assets/sounds/V de Vilão_mixed.mp3" id="4_wu84c"]
+[ext_resource type="Script" uid="uid://c5jxleuqkuy3p" path="res://scenes/v.gd" id="5_8ln24"]
+
+[sub_resource type="Gradient" id="Gradient_8ln24"]
+offsets = PackedFloat32Array(0, 0.6666667, 1)
+colors = PackedColorArray(0.039215688, 0.039215688, 0.039215688, 0, 0.039215688, 0.039215688, 0.039215688, 0.85714287, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rtw2f"]
+gradient = SubResource("Gradient_8ln24")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0.36875, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ekxnf"]
+font = ExtResource("2_ekxnf")
+font_size = 400
+
+[sub_resource type="LabelSettings" id="LabelSettings_wu84c"]
+font = ExtResource("2_ekxnf")
+font_size = 34
+
+[sub_resource type="Animation" id="Animation_oa1go"]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeOverlay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rtw2f"]
+resource_name = "fade_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeOverlay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tbmy8"]
+_data = {
+&"RESET": SubResource("Animation_oa1go"),
+&"fade_out": SubResource("Animation_rtw2f")
+}
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -9,22 +92,90 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_rtw2f")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("5_8ln24")
+
+[node name="V" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("4_wu84c")
+volume_db = -30.0
+autoplay = true
+parameters/looping = true
+
+[node name="Rain" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("3_bqqt6")
+volume_db = -15.0
+autoplay = true
+parameters/looping = true
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 1929.0
+offset_bottom = 1077.0
+stream = ExtResource("4_8ln24")
+autoplay = true
+loop = true
+
+[node name="side_bar" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1249.0
+offset_right = 1919.951
+offset_bottom = 1080.0
+texture = SubResource("GradientTexture2D_rtw2f")
+
+[node name="Label" type="Label" parent="side_bar"]
+visible = false
+layout_mode = 0
+offset_left = 306.0
+offset_top = 205.0
+offset_right = 540.0
+offset_bottom = 685.0
+text = "V"
+label_settings = SubResource("LabelSettings_ekxnf")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="side_bar"]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 497.0
+offset_right = 567.0
+offset_bottom = 584.0
+text = "Aperte Enter 
+para Continuar"
+label_settings = SubResource("LabelSettings_wu84c")
+horizontal_alignment = 1
+
+[node name="FadeOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 783.0
-offset_top = 245.0
-offset_right = 1160.0
-offset_bottom = 355.0
-theme_override_font_sizes/font_size = 80
-text = "V de Vilão"
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -240.0
+offset_right = 117.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "V"
+label_settings = SubResource("LabelSettings_ekxnf")
+horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 774.0
-offset_top = 544.0
-offset_right = 1307.0
-offset_bottom = 696.0
-theme_override_font_sizes/font_size = 80
-text = "Play"
-script = ExtResource("1_l6cm7")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tbmy8")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

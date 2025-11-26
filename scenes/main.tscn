@@ -1,18 +1,149 @@
-[gd_scene load_steps=45 format=3 uid="uid://l1sndifrnqi4"]
+[gd_scene load_steps=76 format=3 uid="uid://l1sndifrnqi4"]
 
 [ext_resource type="Texture2D" uid="uid://cwym7mgm2kwp3" path="res://assets/background/police-station-1.jpg" id="1_jyhfs"]
+[ext_resource type="Script" uid="uid://dbycli6nw1p26" path="res://scenes/item_2.gd" id="2_choun"]
 [ext_resource type="PackedScene" uid="uid://bbqjquk7hdb50" path="res://scenes/player.tscn" id="2_tbgi4"]
+[ext_resource type="Script" uid="uid://hj837p7j3xho" path="res://scenes/item.gd" id="2_tipki"]
+[ext_resource type="Texture2D" uid="uid://bs1wk102mgcqe" path="res://assets/others/R5sdMe-ezgif.com-gif-to-sprite-converter.png" id="3_85g3d"]
 [ext_resource type="Texture2D" uid="uid://bwh06o22cwleq" path="res://assets/background/lamp.png" id="4_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://up5ksly48vjo" path="res://assets/background/def.png" id="4_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dy3qp3ybche6r" path="res://scenes/policial.tscn" id="6_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://cliwelklqmdg8" path="res://assets/background/abc (1).png" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://cmjoam8caxhd8" path="res://assets/others/unnamed.png" id="7_o6xl0"]
+[ext_resource type="Script" uid="uid://romwpv4mh0bh" path="res://scenes/node_2d.gd" id="11_ya4ey"]
+[ext_resource type="Script" uid="uid://c0syy1kh2xsl8" path="res://scenes/next_area.gd" id="12_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://rwgr2sxif6oe" path="res://assets/background/e6db5215-2982-4702-b440-ad1457c0ed89 (1).png" id="13_trceg"]
+[ext_resource type="Script" uid="uid://c5jxleuqkuy3p" path="res://scenes/v.gd" id="14_jbj1t"]
+[ext_resource type="AudioStream" uid="uid://booha8ljhkh87" path="res://assets/sounds/V de Vilão_mixed.mp3" id="15_muem4"]
+[ext_resource type="AudioStream" uid="uid://b8kpdjrsbma5x" path="res://assets/sounds/som_de_chuva1.mp3" id="16_dp3eg"]
 
-[sub_resource type="Gradient" id="Gradient_tefeu"]
+[sub_resource type="Gradient" id="Gradient_choun"]
 offsets = PackedFloat32Array(0.42708334)
 colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_o6xl0"]
-gradient = SubResource("Gradient_tefeu")
+gradient = SubResource("Gradient_choun")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5he1u"]
+size = Vector2(42, 43)
+
+[sub_resource type="Gradient" id="Gradient_tbgi4"]
+offsets = PackedFloat32Array(0, 0.28125, 0.7916667)
+colors = PackedColorArray(0.8427173, 0.91947275, 0.9041039, 1, 0.6743092, 0.7342382, 0.72223854, 0.7807779, 0.07450981, 0.07450981, 0.07450981, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5poiv"]
+gradient = SubResource("Gradient_tbgi4")
+fill = 1
+fill_from = Vector2(0.51875, 0.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cjbq"]
+atlas = ExtResource("3_85g3d")
+region = Rect2(0, 0, 448, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chjal"]
+atlas = ExtResource("3_85g3d")
+region = Rect2(0, 448, 448, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjqg0"]
+atlas = ExtResource("3_85g3d")
+region = Rect2(0, 896, 448, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vchkt"]
+atlas = ExtResource("3_85g3d")
+region = Rect2(0, 1344, 448, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txyw0"]
+atlas = ExtResource("3_85g3d")
+region = Rect2(0, 1792, 448, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc5cj"]
+atlas = ExtResource("3_85g3d")
+region = Rect2(0, 2240, 448, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvyfr"]
+atlas = ExtResource("3_85g3d")
+region = Rect2(0, 2688, 448, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ty1g6"]
+atlas = ExtResource("3_85g3d")
+region = Rect2(0, 3136, 448, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2jfr"]
+atlas = ExtResource("3_85g3d")
+region = Rect2(0, 3584, 448, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjg73"]
+atlas = ExtResource("3_85g3d")
+region = Rect2(0, 4032, 448, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu4jf"]
+atlas = ExtResource("3_85g3d")
+region = Rect2(0, 4480, 448, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7ddy"]
+atlas = ExtResource("3_85g3d")
+region = Rect2(0, 4928, 448, 448)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0loja"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cjbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chjal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjqg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vchkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txyw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc5cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvyfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ty1g6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2jfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjg73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu4jf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7ddy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fuf3a"]
+size = Vector2(42, 43)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pibwh"]
+gradient = SubResource("Gradient_tbgi4")
+fill = 1
+fill_from = Vector2(0.51875, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5poiv"]
+size = Vector2(22, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cjbq"]
+size = Vector2(238, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chjal"]
+size = Vector2(52, 52)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pibwh"]
 size = Vector2(417, 87)
@@ -125,11 +256,10 @@ polygon = PackedVector2Array(-251, -17, 229, -16, 229, 5, -250, 5)
 [node name="main" type="Node2D"]
 
 [node name="background" type="TextureRect" parent="."]
-visible = false
-offset_left = -2229.0
-offset_top = -1383.0
-offset_right = 5389.0
-offset_bottom = 2580.0
+offset_left = -2710.0
+offset_top = -1337.0
+offset_right = 4908.0
+offset_bottom = 2626.0
 texture = SubResource("GradientTexture1D_o6xl0")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -139,7 +269,58 @@ offset_right = 1917.4684
 offset_bottom = 1111.0
 texture = ExtResource("1_jyhfs")
 
+[node name="Item2" type="Area2D" parent="."]
+position = Vector2(1722, 212)
+script = ExtResource("2_choun")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item2"]
+shape = SubResource("RectangleShape2D_5he1u")
+
+[node name="PointLight2D" type="PointLight2D" parent="Item2"]
+position = Vector2(-3.8146973e-06, -3.8146973e-06)
+scale = Vector2(0.51074255, 0.51074255)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_5poiv")
+texture_scale = 2.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Item2"]
+position = Vector2(-0.99996233, -0.99999285)
+scale = Vector2(0.14704257, 0.14704257)
+sprite_frames = SubResource("SpriteFrames_0loja")
+frame_progress = 0.22256818
+
+[node name="Item" type="Area2D" parent="."]
+position = Vector2(586, 962)
+script = ExtResource("2_tipki")
+
+[node name="Sprite2D" type="Sprite2D" parent="Item"]
+position = Vector2(7.6293945e-06, 7.6293945e-06)
+scale = Vector2(0.05273442, 0.05273442)
+texture = ExtResource("7_o6xl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Item"]
+shape = SubResource("RectangleShape2D_fuf3a")
+
+[node name="PointLight2D" type="PointLight2D" parent="Item"]
+position = Vector2(-3.8146973e-06, -3.8146973e-06)
+scale = Vector2(0.51074255, 0.51074255)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_pibwh")
+texture_scale = 2.0
+
 [node name="player" parent="." instance=ExtResource("2_tbgi4")]
+position = Vector2(303, 350)
+
+[node name="Policial2" parent="." instance=ExtResource("6_o6xl0")]
+position = Vector2(1401, 212)
+rotation = 3.1415925
+direcao = 3
+distancia_patrulha = 400
+
+[node name="Policial" parent="." instance=ExtResource("6_o6xl0")]
+position = Vector2(1290, 598)
+rotation = -1.5707964
+distancia_patrulha = 1000
 
 [node name="door_paralax" type="TextureRect" parent="."]
 offset_left = 1311.0
@@ -161,10 +342,47 @@ offset_top = 171.0
 offset_right = 528.0
 offset_bottom = 212.0
 texture = ExtResource("4_tbgi4")
+metadata/_edit_use_anchors_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+
+[node name="Door" type="Node2D" parent="."]
+position = Vector2(1520, 698)
+script = ExtResource("11_ya4ey")
+
+[node name="door" type="StaticBody2D" parent="Door"]
+
+[node name="door" type="CollisionShape2D" parent="Door/door"]
+shape = SubResource("RectangleShape2D_5poiv")
+
+[node name="main_door" type="Area2D" parent="Door"]
+
+[node name="detection" type="CollisionShape2D" parent="Door/main_door"]
+shape = SubResource("RectangleShape2D_2cjbq")
+
+[node name="ColorRect" type="ColorRect" parent="Door"]
+offset_left = -12.0
+offset_top = -70.0
+offset_right = 11.0
+offset_bottom = 72.0
+color = Color(1, 0, 0, 0.44313726)
+
+[node name="NextArea" type="Node2D" parent="."]
+position = Vector2(1727, 590)
+script = ExtResource("12_eb6dy")
+
+[node name="TextureRect" type="TextureRect" parent="NextArea"]
+offset_left = -48.0
+offset_top = -49.0
+offset_right = 48.0
+offset_bottom = 47.0
+texture = ExtResource("13_trceg")
+
+[node name="Area2D" type="Area2D" parent="NextArea"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NextArea/Area2D"]
+shape = SubResource("RectangleShape2D_chjal")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -326,5 +544,22 @@ occluder = SubResource("OccluderPolygon2D_o6xl0")
 position = Vector2(493, 785)
 occluder = SubResource("OccluderPolygon2D_tbgi4")
 
-[node name="Policial" parent="." instance=ExtResource("6_o6xl0")]
-position = Vector2(103, 0)
+[node name="Node" type="Node" parent="."]
+script = ExtResource("14_jbj1t")
+
+[node name="V" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("15_muem4")
+volume_db = -30.0
+autoplay = true
+parameters/looping = true
+
+[node name="Rain" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("16_dp3eg")
+volume_db = -15.0
+autoplay = true
+parameters/looping = true
+
+[connection signal="body_entered" from="Item2" to="Item2" method="_on_body_entered"]
+[connection signal="body_entered" from="Item" to="Item" method="_on_body_entered"]
+[connection signal="body_entered" from="Door/main_door" to="Door" method="_on_main_door_body_entered"]
+[connection signal="body_entered" from="NextArea/Area2D" to="NextArea" method="_on_area_2d_body_entered"]

@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbqjquk7hdb50"]
+[gd_scene load_steps=15 format=3 uid="uid://bbqjquk7hdb50"]
 
+[ext_resource type="Script" uid="uid://cq465k20mjkgp" path="res://scenes/player.gd" id="1_fjrip"]
 [ext_resource type="Script" uid="uid://bwtf636weqfd5" path="res://chars/character_body_2d.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cwym7mgm2kwp3" path="res://assets/background/police-station-1.jpg" id="1_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://jqisx31drrx6" path="res://assets/main_char/vista de cima.png" id="2_qhqgy"]
 [ext_resource type="Shader" uid="uid://ct1mo0dtdsr1h" path="res://scenes/player.gdshader" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://btqa824pworsw" path="res://assets/others/lantern_light.png" id="5_qlg0r"]
+[ext_resource type="FontFile" uid="uid://b0w6ptohxm2ao" path="res://assets/fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="7_smehm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dqkch"]
 shader = ExtResource("4_qlg0r")
@@ -13,16 +15,106 @@ shader_parameter/smoothness = 0.1
 shader_parameter/fade_start = 0.3
 shader_parameter/fade_end = 1.0
 
-[sub_resource type="Gradient" id="Gradient_tbgi4"]
+[sub_resource type="Gradient" id="Gradient_qlg0r"]
 offsets = PackedFloat32Array(0, 0.28125, 0.7916667)
 colors = PackedColorArray(0.8427173, 0.91947275, 0.9041039, 1, 0.6743092, 0.7342382, 0.72223854, 0.7807779, 0.07450981, 0.07450981, 0.07450981, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dqkch"]
-gradient = SubResource("Gradient_tbgi4")
+gradient = SubResource("Gradient_qlg0r")
 fill = 1
 fill_from = Vector2(0.51875, 0.5)
 
+[sub_resource type="Animation" id="Animation_85g3d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CanvasModulate:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.101960786, 0.101960786, 0.101960786, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tipki"]
+resource_name = "fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CanvasModulate:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.101960786, 0.101960786, 0.101960786, 0), Color(0.101960786, 0.101960786, 0.101960786, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_choun"]
+_data = {
+&"RESET": SubResource("Animation_85g3d"),
+&"fade_in": SubResource("Animation_tipki")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_ur7pv"]
+font = ExtResource("7_smehm")
+font_size = 296
+
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_fjrip")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
@@ -30,19 +122,18 @@ offset_right = 1918.4683
 offset_bottom = 1096.0
 texture = ExtResource("1_qhqgy")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(279, 322)
+[node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("1_g2els")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 position = Vector2(4.7683716e-05, -3.9999685)
 scale = Vector2(0.50423837, 0.5944453)
 texture = ExtResource("2_qhqgy")
 
-[node name="LanternHand" type="Node2D" parent="CharacterBody2D/Sprite2D"]
+[node name="LanternHand" type="Node2D" parent="Player/Sprite2D"]
 position = Vector2(-9.916066, -30.28038)
 
-[node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D/Sprite2D/LanternHand"]
+[node name="PointLight2D" type="PointLight2D" parent="Player/Sprite2D/LanternHand"]
 material = SubResource("ShaderMaterial_dqkch")
 rotation = 3.1415927
 blend_mode = 2
@@ -50,17 +141,17 @@ shadow_enabled = true
 texture = ExtResource("5_qlg0r")
 offset = Vector2(3.5, 303.5)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-zoom = Vector2(1.35, 1.35)
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(1.8, 1.8)
 process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
 polygon = PackedVector2Array(24, -2, 24, 16, -24, 16, -24, -1, -11, -15, -9, -24, -1, -24, -1, -7, 11, -7, 11, -2)
 
-[node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D"]
+[node name="PointLight2D" type="PointLight2D" parent="Player"]
 position = Vector2(0, 5)
 scale = Vector2(0.8496098, 0.8496098)
 shadow_enabled = true
@@ -70,3 +161,43 @@ texture_scale = 2.0
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+
+[node name="FadeOverlay" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -534.0
+offset_top = -300.0
+offset_right = 534.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../FadeOverlay")
+libraries = {
+&"": SubResource("AnimationLibrary_choun")
+}
+
+[node name="Label" type="Label" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.5
+offset_top = -178.0
+offset_right = 86.5
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "V"
+label_settings = SubResource("LabelSettings_ur7pv")
+horizontal_alignment = 1

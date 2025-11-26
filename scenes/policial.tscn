@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dy3qp3ybche6r"]
+[gd_scene load_steps=8 format=3 uid="uid://dy3qp3ybche6r"]
 
+[ext_resource type="Script" uid="uid://b0qqah3tpw2wt" path="res://scenes/policial.gd" id="1_rdodq"]
 [ext_resource type="Texture2D" uid="uid://cwym7mgm2kwp3" path="res://assets/background/police-station-1.jpg" id="1_tvnp5"]
 [ext_resource type="Shader" uid="uid://ct1mo0dtdsr1h" path="res://scenes/player.gdshader" id="3_rdodq"]
 [ext_resource type="Texture2D" uid="uid://btqa824pworsw" path="res://assets/others/lantern_light.png" id="4_hrxlf"]
@@ -14,7 +15,11 @@ shader_parameter/smoothness = 0.1
 shader_parameter/fade_start = 0.3
 shader_parameter/fade_end = 1.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bgq3l"]
+radius = 1.0
+
 [node name="Policial" type="Node2D"]
+script = ExtResource("1_rdodq")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
@@ -23,7 +28,11 @@ offset_bottom = 1096.0
 texture = ExtResource("1_tvnp5")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(257, 702)
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D/Area2D"]
+polygon = PackedVector2Array(-65, -322, 55, -322, -5, -22)
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 position = Vector2(4.7683716e-05, -3.9999685)
@@ -38,15 +47,17 @@ material = SubResource("ShaderMaterial_ojlkg")
 position = Vector2(-3.1668428e-08, 0.3622446)
 rotation = 3.1415927
 scale = Vector2(1, 0.8792518)
-energy = 0.15
 blend_mode = 2
 shadow_enabled = true
 texture = ExtResource("4_hrxlf")
 offset = Vector2(3.5, 303.5)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
-polygon = PackedVector2Array(-65, -322, 55, -322, -5, -22)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_bgq3l")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+
+[connection signal="body_entered" from="CharacterBody2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]

@@ -16,118 +16,157 @@ script/source = "extends Control
 @onready var left_portrait = $CharacterPortraits/LeftPortraits
 @onready var right_portrait = $CharacterPortraits/RightPortraits
 
-var dialogue_data = []
-var current_dialogue_index = 0
-var is_dialogue_active = false
-var text_speed = 0.03
-var is_typing = false
+var dialogue_data: Array = []
+var current_dialogue_index: int = 0
+var is_dialogue_active: bool = false
+var text_speed: float = 0.03
+var is_typing: bool = false
+
+var dialogue_step: int = 0  # controla se estamos no 1º ou 2º diálogo
 
 signal dialogue_finished
+
 
 func _ready():
 	dialogue_box.visible = false
 	gray_filter.visible = true
-	left_portrait.play()
-	right_portrait.play()
 	continue_button.pressed.connect(_on_continue_pressed)
-	
+
+	if left_portrait.has_method(\"play\"):
+		left_portrait.play()
+
+	if right_portrait.has_method(\"play\"):
+		right_portrait.play()
+
+	# Quando qualquer diálogo termina, avança para o próximo passo
+	dialogue_finished.connect(_on_dialogue_finished)
+
 	await get_tree().create_timer(0.5).timeout
-	start_auto_dialogue()
-	
-func start_auto_dialogue():
-	\"\"\"Inicia um diálogo automático quando a cena carrega\"\"\"
+	start_first_dialogue()
+
+
+# ============================================================
+# PRIMEIRO DIÁLOGO
+# ============================================================
+
+func start_first_dialogue():
+	dialogue_step = 1
+
 	var auto_dialogue = [
-		{
-			\"character\": \"Guarda\",
-			\"text\": \"Bem vindo a sua nova casa!\"
-		},
-		{
-			\"character\": \"Guarda\",
-			\"text\": \"Mas não por muito tempo, a gente sabe o que você fez.\"
-		},
-		{
-			\"character\": \"Guarda\",
-			\"text\": \"E gente que nem você não dura muito tempo por aqui.\"
-		},
-		{
-			\"character\": \"V\",
-			\"text\": \"Eu não me importo com essa sua falação.\"
-		},
-		{
-			\"character\": \"V\",
-			\"text\": \"Se eu tivesse outra oportunidade, faria tudo igual.\"
-		},
-		{
-			\"character\": \"Guarda\",
-			\"text\": \"Vamos ver quanto tempo dura essa sua marra.\"
-		}
+		{\"character\": \"Guarda\", \"text\": \"Você finalmente vai sair depois de 5 anos.\"},
+		{\"character\": \"Guarda\", \"text\": \"Mas não vai durar por muito tempo, a gente sabe o que você fez.\"},
+		{\"character\": \"Guarda\", \"text\": \"E gente que nem você nunca terá nada.\"},
+		{\"character\": \"V\", \"text\": \"Eu não me importo com essa sua falação.\"},
+		{\"character\": \"V\", \"text\": \"Se eu tivesse outra oportunidade, faria tudo igual.\"},
+		{\"character\": \"Guarda\", \"text\": \"Vamos ver quanto tempo dura essa sua marra.\"}
 	]
-	
+
 	start_dialogue(auto_dialogue)
 
-func start_dialogue(dialogue_array: Array):
-	\"\"\"Inicia um novo diálogo com o array de dados fornecido\"\"\"
+
+# ============================================================
+# SEGUNDO DIÁLOGO
+# ============================================================
+
+func start_second_dialogue():
+	dialogue_step = 2
+
+	right_portrait.visible = false
+
+	var pensamento = [
+		{\"character\": \"V\", \"text\": \"Vou naquela delegacia caçar informações.\"},
+		{\"character\": \"V\", \"text\": \"Vou me vingar dele.\"}
+	]
+
+	start_dialogue(pensamento)
+
+
+# ============================================================
+# AÇÃO APÓS DIÁLOGO — MUDA CENA
+# ============================================================
+
+func _on_dialogue_finished():
+
+	if dialogue_step == 1:
+		# terminou o primeiro diálogo → inicia o segundo
+		start_second_dialogue()
+		return
+
+	if dialogue_step == 2:
+		# terminou o segundo diálogo → troca de cena
+		_load_next_scene()
+		return
+
+
+func _load_next_scene():
+	# COLOQUE AQUI O CAMINHO DA CENA DE DESTINO
+	var next_scene_path = \"res://scenes/main.tscn\"
+	
+	get_tree().change_scene_to_file(next_scene_path)
+
+
+# ============================================================
+# SISTEMA DE DIÁLOGO (GENERALIZADO)
+# ============================================================
+
+func start_dialogue(dialogue_array: Array) -> void:
 	dialogue_data = dialogue_array
 	current_dialogue_index = 0
 	is_dialogue_active = true
-	
+
 	gray_filter.visible = true
 	dialogue_box.visible = true
-	
-	get_tree().paused = false
-	
+
 	show_current_dialogue()
 
+
 func show_current_dialogue():
-	\"\"\"Mostra o diálogo atual\"\"\"
 	if current_dialogue_index >= dialogue_data.size():
 		end_dialogue()
 		return
-	
+
 	var current_data = dialogue_data[current_dialogue_index]
 	character_name.text = current_data.get(\"character\", \"\")
-	
 	start_typing_animation(current_data.get(\"text\", \"\"))
 
-func start_typing_animation(text: String):
-	\"\"\"Anima o texto sendo digitado letra por letra\"\"\"
+
+func start_typing_animation(text: String) -> void:
 	is_typing = true
 	dialogue_text.text = \"\"
 	continue_button.visible = false
-	
-	for i in range(text.length()):
+
+	for i in text.length():
 		dialogue_text.text += text[i]
 		await get_tree().create_timer(text_speed).timeout
-		
-		# Permite pular a animação
+
 		if Input.is_action_just_pressed(\"ui_accept\"):
 			dialogue_text.text = text
 			break
-	
+
 	is_typing = false
 	continue_button.visible = true
 
+
 func _on_continue_pressed():
-	\"\"\"Chamado quando o botão de continuar é pressionado\"\"\"
 	if is_typing:
 		return
-	
+
 	current_dialogue_index += 1
 	show_current_dialogue()
 
+
 func end_dialogue():
-	\"\"\"Termina o diálogo atual\"\"\"
 	is_dialogue_active = false
 	dialogue_box.visible = false
 	gray_filter.visible = false
-	get_tree().paused = false
+
 	dialogue_finished.emit()
 
-func _input(event):
-	\"\"\"Permite avançar o diálogo com teclas\"\"\"
+
+func _unhandled_input(event):
 	if not is_dialogue_active or is_typing:
 		return
-	
+
 	if event.is_action_pressed(\"ui_accept\") or event.is_action_pressed(\"ui_select\"):
 		_on_continue_pressed()
 "
