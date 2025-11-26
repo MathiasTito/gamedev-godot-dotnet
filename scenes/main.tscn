@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://l1sndifrnqi4"]
+[gd_scene load_steps=80 format=3 uid="uid://l1sndifrnqi4"]
 
 [ext_resource type="Texture2D" uid="uid://cwym7mgm2kwp3" path="res://assets/background/police-station-1.jpg" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://dbycli6nw1p26" path="res://scenes/item_2.gd" id="2_choun"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://c5jxleuqkuy3p" path="res://scenes/v.gd" id="14_jbj1t"]
 [ext_resource type="AudioStream" uid="uid://booha8ljhkh87" path="res://assets/sounds/V de Vilão_mixed.mp3" id="15_muem4"]
 [ext_resource type="AudioStream" uid="uid://b8kpdjrsbma5x" path="res://assets/sounds/som_de_chuva1.mp3" id="16_dp3eg"]
+[ext_resource type="FontFile" uid="uid://dp53xyacqqvgx" path="res://assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="17_muem4"]
 
 [sub_resource type="Gradient" id="Gradient_choun"]
 offsets = PackedFloat32Array(0.42708334)
@@ -252,6 +253,19 @@ polygon = PackedVector2Array(-236, -18, 1692, -18, 1688, 736, 1614, 736, 1613, 4
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tbgi4"]
 polygon = PackedVector2Array(-251, -17, 229, -16, 229, 5, -250, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dp3eg"]
+font = ExtResource("17_muem4")
+font_size = 22
+
+[sub_resource type="Gradient" id="Gradient_muem4"]
+colors = PackedColorArray(1, 1, 1, 1, 0.72156864, 0.72156864, 0.72156864, 0.2)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dp3eg"]
+gradient = SubResource("Gradient_muem4")
+fill = 1
+fill_from = Vector2(0.508547, 0.508547)
+fill_to = Vector2(0.51282054, 0)
 
 [node name="main" type="Node2D"]
 
@@ -558,6 +572,19 @@ stream = ExtResource("16_dp3eg")
 volume_db = -15.0
 autoplay = true
 parameters/looping = true
+
+[node name="tutorial" type="Label" parent="."]
+offset_left = 235.0
+offset_top = 240.0
+offset_right = 690.0
+offset_bottom = 270.0
+text = "Colete os itens da sala e encontre a saída."
+label_settings = SubResource("LabelSettings_dp3eg")
+
+[node name="PointLight2D" type="PointLight2D" parent="tutorial"]
+position = Vector2(240.49998, 12)
+scale = Vector2(8.515625, 1)
+texture = SubResource("GradientTexture2D_dp3eg")
 
 [connection signal="body_entered" from="Item2" to="Item2" method="_on_body_entered"]
 [connection signal="body_entered" from="Item" to="Item" method="_on_body_entered"]

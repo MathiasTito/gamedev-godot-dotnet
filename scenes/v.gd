@@ -3,8 +3,8 @@ extends Node
 @onready var music_player_V = $V
 @onready var music_player_rain = $Rain
 
-var volume_final_V = 0.0 
-var volume_final_rain = 5.0 
+var volume_final_V = -25.0
+var volume_final_rain = -60.0
 var tempo_espera_V = 2.0   
 var tempo_espera_rain = 0.2  
 var duracao_fade = 4.0   

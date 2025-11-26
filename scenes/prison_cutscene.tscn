@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://ce8s40xfu5eh7"]
+[gd_scene load_steps=22 format=3 uid="uid://ce8s40xfu5eh7"]
 
 [ext_resource type="Texture2D" uid="uid://b57rd0chgvlh" path="res://assets/background/prison.png" id="1_1661b"]
+[ext_resource type="Script" uid="uid://ugxla8qc0pk0" path="res://scenes/prison_cutscene.gd" id="1_xr6cb"]
 [ext_resource type="Texture2D" uid="uid://cniw5w3isprlc" path="res://assets/policial/GuardaParado.png" id="3_b1ot8"]
 [ext_resource type="Script" uid="uid://c6ifjtqrn570j" path="res://scenes/character_portraits.gd" id="3_ft4dl"]
 [ext_resource type="Texture2D" uid="uid://buag02hdmu6hd" path="res://assets/main_char/ParadoCadeia.png" id="4_ft4dl"]
+[ext_resource type="Texture2D" uid="uid://by45asyecwkhj" path="res://assets/UI/V (1).png" id="5_ft4dl"]
 
 [sub_resource type="GDScript" id="GDScript_b1ot8"]
 script/source = "extends Control
@@ -259,7 +261,69 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_03d2k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeOverlay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xr6cb"]
+resource_name = "fade_in"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeOverlay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333334, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p1je7"]
+_data = {
+&"RESET": SubResource("Animation_03d2k"),
+&"fade_in": SubResource("Animation_xr6cb")
+}
+
 [node name="PrisonCutscene" type="Node2D"]
+script = ExtResource("1_xr6cb")
 
 [node name="DialogueManager" type="Control" parent="."]
 layout_mode = 3
@@ -326,3 +390,29 @@ flip_h = true
 position = Vector2(334, 710)
 scale = Vector2(4.25781, 4.25781)
 sprite_frames = SubResource("SpriteFrames_xr6cb")
+
+[node name="FadeOverlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -244.0
+offset_top = -132.0
+offset_right = 2192.5154
+offset_bottom = 1243.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p1je7")
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 616.0
+offset_top = 206.0
+offset_right = 1304.2582
+offset_bottom = 727.0
+texture = ExtResource("5_ft4dl")
+expand_mode = 1

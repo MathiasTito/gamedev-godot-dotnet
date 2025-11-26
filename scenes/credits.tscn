@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://5700rmjlxg5t"]
+[gd_scene load_steps=7 format=3 uid="uid://5700rmjlxg5t"]
 
 [ext_resource type="Script" uid="uid://baofbsle83kdd" path="res://scenes/credits.gd" id="1_2ckv8"]
 [ext_resource type="FontFile" uid="uid://b0w6ptohxm2ao" path="res://assets/fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf" id="2_0ctdu"]
+[ext_resource type="AudioStream" uid="uid://2e24x3d1kd6h" path="res://assets/sounds/som_de_tiro_9mm.mp3" id="3_0ctdu"]
+[ext_resource type="AudioStream" uid="uid://mdjwll6f1ckq" path="res://assets/sounds/V de Vilão_mixed (2).mp3" id="4_8gwij"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ckv8"]
 font = ExtResource("2_0ctdu")
@@ -60,8 +62,20 @@ de Jogos
 Em parceiria com
 UniSenai
 
-Professor Orientador:
+Professor Orientador
 Thiago Schaedler Uhlmann
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Obrigado por jogar!
@@ -80,3 +94,11 @@ Obrigado por jogar!
 "
 label_settings = SubResource("LabelSettings_2fbfq")
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0ctdu")
+autoplay = true
+
+[node name="VAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_8gwij")
+volume_db = -15.0

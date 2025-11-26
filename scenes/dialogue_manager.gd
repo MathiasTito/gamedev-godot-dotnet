@@ -7,6 +7,7 @@ extends Control
 @onready var gray_filter = $GrayFilter
 @onready var left_portrait = $CharacterPortraits/LeftPortraits
 @onready var right_portrait = $CharacterPortraits/RightPortraits
+@onready var animated_rain = $AnimatedSprite2D
 
 var dialogue_data: Array = []
 var current_dialogue_index: int = 0
@@ -14,7 +15,7 @@ var is_dialogue_active: bool = false
 var text_speed: float = 0.03
 var is_typing: bool = false
 
-var dialogue_step: int = 0  # controla se estamos no 1° ou 2° diálogo
+var dialogue_step: int = 0  # 1 = primeiro diálogo, 2 = segundo diálogo
 
 signal dialogue_finished
 
@@ -22,14 +23,17 @@ signal dialogue_finished
 func _ready():
 	dialogue_box.visible = false
 	gray_filter.visible = true
-	right_portrait.visible = false  # right portrait começa escondido
+	continue_button.pressed.connect(_on_continue_pressed)
+	
+	animated_rain.play()
 
-	# left portrait começa parado no frame 0
-	if left_portrait is AnimatedSprite2D:
+	# Deixa só o frame 0 do left_portrait, sem animar
+	if left_portrait.has_method("stop"):
 		left_portrait.stop()
 		left_portrait.frame = 0
 
-	continue_button.pressed.connect(_on_continue_pressed)
+	# O retrato da direita só vai aparecer no segundo diálogo
+	right_portrait.visible = false
 
 	dialogue_finished.connect(_on_dialogue_finished)
 
@@ -38,77 +42,74 @@ func _ready():
 
 
 # ============================================================
-# PRIMEIRO DIÁLOGO (sem right portrait)
+# PRIMEIRO DIÁLOGO (SEM portrait da direita)
 # ============================================================
 
 func start_first_dialogue():
 	dialogue_step = 1
 
 	var auto_dialogue = [
-		{"character": "Guarda", "text": "Você finalmente vai sair depois de 5 anos."},
-		{"character": "Guarda", "text": "Mas não vai durar por muito tempo, a gente sabe o que você fez."},
-		{"character": "Guarda", "text": "E gente que nem você nunca terá nada."},
-		{"character": "V", "text": "Eu não me importo com essa sua falação."},
-		{"character": "V", "text": "Se eu tivesse outra oportunidade, faria tudo igual."},
-		{"character": "Guarda", "text": "Vamos ver quanto tempo dura essa sua marra."}
+		{"character": "Narrador", "text": "V saiu da prisão depois de 5 anos."},
+		{"character": "Narrador", "text": "O mundo lá fora parecia diferente..."},
+		{"character": "Narrador", "text": "E agora ele sabia exatamente onde precisava ir e o que precisava fazer."}
 	]
 
 	start_dialogue(auto_dialogue)
 
 
 # ============================================================
-# SEGUNDO DIÁLOGO (right portrait aparece antes dele)
+# SEGUNDO DIÁLOGO (AGORA portrait da direita aparece)
 # ============================================================
 
 func start_second_dialogue():
 	dialogue_step = 2
 
-	right_portrait.visible = true  # agora aparece
+	right_portrait.visible = true
 
 	var pensamento = [
-		{"character": "V", "text": "Vou naquela delegacia caçar informações."},
-		{"character": "V", "text": "Vou me vingar dele."}
+		{"character": "Guarda", "text": "Ficou com saudades de ver o sol nascer quadrado?"},
+		{"character": "V", "text": "Dessa vez eu vim fazer o que deveria ter feito a muito tempo."},
+		{"character": "Guarda", "text": "Isso é sobre seu pai ou sua irmã?"},
+		{"character": "Guarda", "text": "Gente que nem eles não merecem fim melhor."},
+		{"character": "Guarda", "text": "Você é covarde igual a eles."},
+		{"character": "V", "text": "Me chamo V."},
+		{"character": "V", "text": "V de Vingança."},
+		{"character": "V", "text": "V de Vilão."},
 	]
 
 	start_dialogue(pensamento)
 
 
 # ============================================================
-# FINALIZAÇÃO DE CADA DIÁLOGO
+# AÇÕES APÓS DIÁLOGOS
 # ============================================================
 
 func _on_dialogue_finished():
 
 	if dialogue_step == 1:
-		# terminou o primeiro → inicia o segundo
+		# Terminou primeiro diálogo → inicia o segundo
 		start_second_dialogue()
 		return
 
 	if dialogue_step == 2:
-		# terminou o segundo → começa animação do personagem
+		# Terminou o segundo diálogo → esconde caixa e anima personagem
 		_finalize_and_start_character_animation()
 		return
 
 
-# ============================================================
-# ANIMAÇÃO FINAL DO PERSONAGEM
-# ============================================================
-
 func _finalize_and_start_character_animation():
+	# Remove caixa de diálogo
 	dialogue_box.visible = false
 	gray_filter.visible = false
 	is_dialogue_active = false
 
-	# toca animação final no personagem
-	if left_portrait is AnimatedSprite2D:
-		left_portrait.play("andar")  # troque pelo nome correto da animação
-
-		# quando a animação terminar → muda de cena
-		left_portrait.animation_finished.connect(_on_character_animation_finished)
-
-
-func _on_character_animation_finished():
-	get_tree().change_scene_to_file("res://credits.tscn")
+	# Inicia animação do personagem
+	if left_portrait.has_method("play"):
+		left_portrait.play("atirando")
+		
+	await get_tree().create_timer(3).timeout
+		
+	get_tree().change_scene_to_file("res://scenes/credits.tscn")
 
 
 # ============================================================

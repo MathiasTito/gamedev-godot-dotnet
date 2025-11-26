@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var title = $V
 @onready var body = $Label
+@onready var music = $VAudio
 
 var speed := 80.0
 
@@ -15,6 +16,9 @@ func _ready():
 	title.position.y = start_y
 
 	body.position.y = title.position.y + title.size.y + spacing
+		
+	await get_tree().create_timer(2).timeout
+	music.play()
 
 func _process(delta):
 	title.position.y -= speed * delta

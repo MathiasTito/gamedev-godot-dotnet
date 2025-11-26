@@ -1,9 +1,61 @@
-[gd_scene load_steps=24 format=3 uid="uid://mvn28vlgxiqh"]
+[gd_scene load_steps=33 format=3 uid="uid://mvn28vlgxiqh"]
 
 [ext_resource type="Texture2D" uid="uid://bbu0rhfequa37" path="res://assets/dialogue_backgrounds/cena_final.png" id="1_4bkdv"]
 [ext_resource type="Script" uid="uid://77wjlhuq4dlh" path="res://scenes/dialogue_manager.gd" id="1_egufw"]
 [ext_resource type="Texture2D" uid="uid://cniw5w3isprlc" path="res://assets/policial/GuardaParado.png" id="3_r78si"]
+[ext_resource type="Texture2D" uid="uid://cf8l7d6tcjua" path="res://assets/others/Chuva.png" id="3_ytd0m"]
 [ext_resource type="Texture2D" uid="uid://cwt6a1lxjda7o" path="res://assets/main_char/Atirando-Sheet.png" id="4_ytd0m"]
+[ext_resource type="AudioStream" uid="uid://b8kpdjrsbma5x" path="res://assets/sounds/som_de_chuva1.mp3" id="6_iwokc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3bdr"]
+atlas = ExtResource("3_ytd0m")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4p2uy"]
+atlas = ExtResource("3_ytd0m")
+region = Rect2(1920, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88a02"]
+atlas = ExtResource("3_ytd0m")
+region = Rect2(3840, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1yt6"]
+atlas = ExtResource("3_ytd0m")
+region = Rect2(5760, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1eqo"]
+atlas = ExtResource("3_ytd0m")
+region = Rect2(7680, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17a5t"]
+atlas = ExtResource("3_ytd0m")
+region = Rect2(9600, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0m2sg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3bdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4p2uy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88a02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1yt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1eqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17a5t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 35.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xr6cb"]
 atlas = ExtResource("3_r78si")
@@ -155,6 +207,11 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("1_4bkdv")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DialogueManager"]
+position = Vector2(960, 540)
+sprite_frames = SubResource("SpriteFrames_0m2sg")
+frame_progress = 0.4019521
+
 [node name="GrayFilter" type="ColorRect" parent="DialogueManager"]
 layout_mode = 0
 offset_right = 1920.0
@@ -199,13 +256,18 @@ offset_bottom = 1075.0
 position = Vector2(1637, 800)
 scale = Vector2(4.25781, 4.25781)
 sprite_frames = SubResource("SpriteFrames_iwokc")
-frame_progress = 0.50051636
+frame_progress = 0.34021
 flip_h = true
 
 [node name="LeftPortraits" type="AnimatedSprite2D" parent="DialogueManager/CharacterPortraits"]
-position = Vector2(347.00003, 850.00006)
+position = Vector2(342.00003, 809)
 scale = Vector2(2.665938, 2.665938)
 sprite_frames = SubResource("SpriteFrames_i3bdr")
 animation = &"atirando"
 frame = 1
 frame_progress = 0.5974249
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_iwokc")
+autoplay = true
+parameters/looping = true
